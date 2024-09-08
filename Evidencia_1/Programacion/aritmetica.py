@@ -65,5 +65,3 @@ def promedio_n(*num):
             return a
 
                    
-
-print(promedio_n(2,3,4,3.23,4,3))
