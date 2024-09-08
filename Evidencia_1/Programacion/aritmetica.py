@@ -58,10 +58,12 @@ def promedio_n(*num):
                 a += i
                 b += 1
             a = (a/b)
-            a = round(a,2)
-            return a
+            a = round(a,2)    
         except Exception as e:
             print("Dato ingresado no valido")
+        else:
+            return a
 
                    
 
+print(promedio_n(2,3,4,3.23,4,3))
