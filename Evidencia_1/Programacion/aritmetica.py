@@ -65,8 +65,3 @@ def promedio_n(*num):
 
                    
 
-print(promedio_n(2,3,4,5,7,98,4,5,3))
-
-print(promedio_n(2,3,4,"asdasd"))
-
-print(promedio_n(2,3.2342,2.42341))
