@@ -4,11 +4,11 @@ from aritmetica import *
 from os import system  
 
 def captcha():
-    a = randint(-10,10)
-    b = randint(-5,5)
-    c = randint(-10,10)
-    d = randint(-10,10)
-    e = randint(-5,5)
+    a = randint(1,10)
+    b = randint(0,5)
+    c = randint(1,10)
+    d = randint(1,10)
+    e = randint(0,5)
     result = sumar_n(a,c,d) - multiplicar(b,e)
     print("Resolver el siguiente calculo para verificar:")
     print(f"({a} + {c} + {d} ) - ( {b} x {e})")
