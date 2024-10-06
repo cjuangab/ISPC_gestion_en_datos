@@ -18,44 +18,36 @@ Al ejecutar el archivo menu.py nos figura por consola 7 opciones:
 6. Mostrar todos los usuarios
 7. Salir
 
-#### Crear usuario
+### Crear usuario
 
 Al ejecutar esta opcion nos permitira crear un usuario solicitandonos un ID, un nombre de usuario, una contraseña y un email
 
 A futuro la idea es que el ID se genere de forma automatica y que los demas datos tengan verificaciones
 
-
-#### Ingresar al sistema
+### Ingresar al sistema
 
 Nos permitira ingresar a el software solicitandonos un usuario y contraseña
 
-
-#### Modificar Usuario
+### Modificar Usuario
 
 Nos permite modificar un usuario existente almacenado en el archivo usuarios.ispc
 
-
-#### Eliminar usuario
+### Eliminar usuario
 
 Nos permite Eliminar un usuario existente almacenado en el archivo usuarios.ispc
 
-
-#### Buscar Usuario
+### Buscar Usuario
 
 Nos permite buscar un usuario existente almacenado en el archivo usuarios.ispc
 
-
-#### Mostrar todos los usuarios
+### Mostrar todos los usuarios
 
 Nos muestra por consolas todos los usuarios existentes almacenados en el archivo usuarios.ispc
 
-
-#### Salir
+### Salir
 
 Por ultimo esta opcion nos permite salir del programa
 
-
-
-#### Inconvenientes a la hora de cumplimentar la evidencia
+## Inconvenientes a la hora de cumplimentar la evidencia
 
 Principalmente tuvimos complicaciones con hacer funcionar la coneccion con la lectura de los archivos, mas precisamente en la escritura de nuevos elementos, ya que se sobreescribia el archivo existente y perdiamos la informacion previamente guardada, logramos subsanar este contrapie leyendo el archivo y almacenandolo en una lista a la cual le realizabamos las modificaciones pertinentes y luegamente esta lista que contenia la informacion existente en el archivo mas la nueva informacion era cargado en el archivo y al sobre escribir no perdiamos informacion ya que estaba ya integrada en la lista que cargabamos
