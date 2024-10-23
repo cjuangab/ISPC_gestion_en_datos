@@ -2,7 +2,7 @@
 from os import system               #Importamos del modulo os la funcion system("cls") para poder borrar la consola
 from time import sleep              #Importamos del modulo time la funcion sleep() que nos permite realizar un retraso en el sistema
 from users import *                 #Importamos del modulo users sus clases y sus funciones
-
+from registros_pluviales import *
 def solicitar_datos():
     id_usuario = int(input("Ingrese el ID del Usuario: "))
     username = input("Ingrese el Nombre de Usuario: ")
@@ -27,6 +27,8 @@ def menu_principal():
     print('4. Eliminar Usuario.')
     print('5. Buscar Usuario.')
     print('6. Mostrar todos los usuarios.')
+    print('7. Ordenar los usuarios almacenados.')
+    print('8. Cargar registros pluviales de un año.')
     print('0. Salir')
     try:
         op_menu = int(input("Por favor, Ingrese el número de la opción deseada: "))
@@ -83,6 +85,17 @@ def menu_principal():
             print("Mostrar todos los usuarios")
             mostrar_usuarios()
             sleep(3)
+            retornar()
+        case 7:
+            # Ordenar archivos
+            system("cls")
+            ordenar_usuarios("usuarios.ispc")
+            sleep(2)
+            retornar()
+        case 8:
+            system("cls")
+            cargar_registros_pluviales()
+            sleep(2)
             retornar()
         case 0:
             exit

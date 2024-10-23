@@ -139,3 +139,49 @@ def eliminar_usuario(id, archivo='usuarios.ispc'):     #Definimos una funcion pa
         pickle.dump(usuarios_filtrados, archivo)
     
     print(f"Usuario con ID {id} eliminado.")
+
+
+def burbuja(usuarios):
+    n = len(usuarios)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if usuarios[j].getUsername() > usuarios[j+1].getUsername():
+                usuarios[j], usuarios[j+1] = usuarios[j+1], usuarios[j]
+    return usuarios
+
+def ordenar_usuarios(archivo='usuarios.ispc'):
+    usuarios = leer_usuarios(archivo)
+    if not usuarios:
+        print("No hay usuarios para ordenar.")
+        return
+
+    
+    while True:
+        print("Opciones de Ordenamiento:")
+        print("1. Bubble Sort o Burbuja")
+        print("2. Usar sort() de Python")
+
+        try:
+            op = int(input("Seleccione la técnica de ordenamiento: "))
+            if ((op == 1) or (op==2)) :
+                return op  # Retorna la opción seleccionada si es válida
+            else:
+                print("Opción inválida")
+        except ValueError:
+            print("Opción inválida. Por favor, ingrese un número.")
+            continue  # Reinicia el bucle para pedir la entrada de nuevo
+    match op:
+        case 1:
+            usuarios = burbuja(usuarios)
+    
+        case 2:
+            usuarios.sort(key=lambda x: x.getUsername())
+            
+    
+    
+        
+    # Guardar usuarios ordenados
+    with open(archivo, 'wb') as archivo:
+        pickle.dump(usuarios, archivo)
+    print("Usuarios ordenados y guardados correctamente.")
+
