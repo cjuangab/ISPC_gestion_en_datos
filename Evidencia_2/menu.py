@@ -29,51 +29,61 @@ def menu_principal():
     print('6. Mostrar todos los usuarios.')
     print('0. Salir')
     op_menu=int(input("Por Favor, Ingrese el número de la opción deseada: "))
-    match op_menu:
-        case 1:
-            system("cls")
-            print("Crear un nuevo Usuario")
-            id_usuario, username, password, email = solicitar_datos()
-            usuario_nuevo = Usuario(id_usuario, username, password, email)
-            agregar_usuario(usuario_nuevo)
-            print("Usuario agregado exitosamente")
-            retornar()
-        case 2:
-            system("cls")
-            print("Ingreso exitoso")
-            print("En prueba")
-            retornar()
-        case 3:
-            print("Modificar un Usuario")
-            id_usuario = int(input("Ingrese el ID del Usuario que desea modificar: "))
-            actualizar_usuario(id_usuario)
-            retornar()
-        case 4:
-            # Eliminar un usuario
-            print("Eliminar un Usuario")
-            id_usuario = int(input("Ingrese el ID del Usuario que desea eliminar: "))
-            eliminar_usuario(id_usuario)
-            retornar()
-        case 5:
-            # Buscar un usuario por ID
-            print("Buscar un Usuario")
-            id_usuario = int(input("Ingrese el ID del Usuario que desea buscar: "))
-            usuario = buscar_usuario(id_usuario)
-            if usuario:
-                print(f"Usuario encontrado: {usuario}")
-            else:
-                print("Usuario no encontrado.")
-            sleep(1)
-        case 6:
-                # Mostrar todos los usuarios almacenados en el archivo
-            print("Mostrar todos los usuarios")
-            mostrar_usuarios()
-            sleep(3)
-            retornar()
-        case 0:
-            exit
-        case _:
-            print("Opcion Incorrecta")
-            retornar()
+    try:
+        match op_menu:
+            case 1:
+                system("cls")
+                print("Crear un nuevo Usuario")
+                id_usuario, username, password, email = solicitar_datos()
+                usuario_nuevo = Usuario(id_usuario, username, password, email)
+                agregar_usuario(usuario_nuevo)
+                print("Usuario agregado exitosamente")
+                retornar()
+            case 2:
+                system("cls")
+                print("Ingreso exitoso")
+                print("En prueba")
+                retornar()
+            case 3:
+                system("cls")
+                print("Modificar un Usuario")
+                id_usuario = int(input("Ingrese el ID del Usuario que desea modificar: "))
+                actualizar_usuario(id_usuario)
+                retornar()
+            case 4:
+                # Eliminar un usuario
+                system("cls")
+                print("Eliminar un Usuario")
+                id_usuario = int(input("Ingrese el ID del Usuario que desea eliminar: "))
+                eliminar_usuario(id_usuario)
+                retornar()
+            case 5:
+                # Buscar un usuario por ID
+                system("cls")
+                print("Buscar un Usuario")
+                id_usuario = int(input("Ingrese el ID del Usuario que desea buscar: "))
+                usuario = buscar_usuario(id_usuario)
+                if usuario:
+                    print(f"Usuario encontrado: {usuario}")
+                else:
+                    print("Usuario no encontrado.")
+                sleep(1)
+            case 6:
+                    # Mostrar todos los usuarios almacenados en el archivo
+                system("cls")
+                print("Mostrar todos los usuarios")
+                mostrar_usuarios()
+                sleep(3)
+                retornar()
+            case 0:
+                exit
+            case _:
+                system("cls")
+                print("Opcion Incorrecta")
+                retornar()
+    except:
+        system("cls")
+        print("Opcion Incorrecta")
+        retornar()
 
 menu_principal()
