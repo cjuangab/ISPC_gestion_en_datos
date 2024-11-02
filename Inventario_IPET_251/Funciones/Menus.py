@@ -135,15 +135,15 @@ def menu_principal(profe):
 
     match op_menu:
         case 1:
-            visualizar_elementos()
+            visualizar_elementos(profe)
         case 2:
-            agregado()
+            agregado(profe)
         case 3:
-            modificacion()
+            modificacion(profe)
         case 0:
-            cierre(profe)
+            cierre()
             sleep(1)
-            registrar_egreso(profe)
+            registrar_egreso()
             ingreso()
         case _:
             print("Opcion Incorrecta")

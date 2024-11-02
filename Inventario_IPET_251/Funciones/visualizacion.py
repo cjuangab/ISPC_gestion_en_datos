@@ -1,7 +1,10 @@
-import Menus
+import mysql
+from Menus import *
 from random import randint          #Importamos del modulo random la funcion randint para poder obtener numeros aleatorios
 from os import system               #Importamos del modulo os la funcion system("cls") para poder borrar la consola
-def visualizar_elementos():         #Def de func principal del modulo, sub menu principal de visualizacion
+from Conector import conexion       # Importamos la función de conexión a la BDD
+
+def visualizar_elementos(profesor):         #Def de func principal del modulo, sub menu principal de visualizacion
     system("cls")
     print("-----------------------------------")
     print('     VISUALIZACION DE RECURSOS     ')
@@ -28,18 +31,17 @@ def visualizar_elementos():         #Def de func principal del modulo, sub menu 
             visualizar_info("Insumos")
         case 0:
             system("cls")
-            Menus.menu_principal()
+            menu_principal(profesor)
         case _:
             print("Opcion Incorrecta")
             visualizar_elementos()
 
 
-def visualizar_info(tipo):          #Def de sub menu dentro de visualizacion
-    
+def visualizar_info(tabla):  # Submenú para visualizar elementos por tabla
     system("cls")
     print("-----------------------------------")
     print("        Como desea visualizar      ")
-    print(f"              {tipo}              ")
+    print(f"              {tabla.capitalize()}              ")
     print("-----------------------------------")
     print("                                   ")
     print('1. Listado completo')
@@ -49,27 +51,52 @@ def visualizar_info(tipo):          #Def de sub menu dentro de visualizacion
     vi = int(input(": "))
     match vi:
         case 1:
-            listado_completo(tipo)
+            listado_completo(tabla)
             delay()
-            
         case 2:
             i = int(input("Ingrese ID de elemento: "))
-            print(f"El elemento {i} de tipo {tipo}: ......")
+            elemento_unico(tabla, i)  # Nueva función para mostrar un único elemento
             delay()
         case 3:
             visualizar_elementos()
         case _:
             print("Opcion Incorrecta")
-            visualizar_info(tipo)
+            visualizar_info(tabla)
     visualizar_elementos()
 
-def listado_completo(tipo):                     #Esta funcion va a estar vinculada con consulta de BDD
-    print(f"Listado completo {tipo}")
-    for i in range(0,randint(1,20)):            #Obtenemos un numero aleatorio para simular una lista
-        print(f"Elemento {i}: ..........")      
-def delay():                                    #Funcion para reducir espacio, debe esperar al usuario para continuar
-    input("Presione ENTER para continuar ")
+def listado_completo(tabla):  # Consulta a la base de datos para obtener todos los registros
+    print(f"Listado completo de {tabla.capitalize()}")
+    try:
+        conec = conexion()
+        cursor = conec.cursor()
+        cursor.execute(f"SELECT * FROM {tabla};")  # Consultamos todos los elementos de la tabla
+        registros = cursor.fetchall()
+        
+        # Mostramos los registros obtenidos
+        for registro in registros:
+            print(registro)  # Aquí puedes formatear los registros según necesites
+        conec.close()
+    except mysql.connector.Error as e:
+        print(f"Error {e}")
 
+def elemento_unico(tabla, id_elemento):  # Consulta a la base de datos para obtener un único registro
+    print(f"Detalle del elemento ID {id_elemento} en {tabla.capitalize()}")
+    try:
+        conec = conexion()
+        cursor = conec.cursor()
+        cursor.execute(f"SELECT * FROM {tabla} WHERE id = %s;", (id_elemento,))  # id puede ser específico para cada tabla
+        registro = cursor.fetchone()
+        
+        if registro:
+            print(registro)  # Aquí puedes formatear los detalles del elemento
+        else:
+            print("Elemento no encontrado")
+        conec.close()
+    except mysql.connector.Error as e:
+        print(f"Error {e}")
+
+def delay():  # Espera para continuar
+    input("Presione ENTER para continuar ")
  
         
 #visualizar_elementos()
