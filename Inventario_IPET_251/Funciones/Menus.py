@@ -19,6 +19,8 @@ def ingreso():
     print('3. Modificar Usuario.')
     print('4. Eliminar Usuario.')
     print('5. Mostrar listado de usuarios.')
+    print('6. Mostrar intentos fallidos.')
+    print('7. Mostrar Registro de accesos.')
     print('0. Salir')
     try:
         op_menu = int(input("Por favor, Ingrese el número de la opción deseada: "))
@@ -45,6 +47,8 @@ def ingreso():
         case 2:
             system("cls")
             print("Crear un nuevo Usuario")
+            print("---------------------------")
+            print("")
             id_usuario, username, password, email = solicitar_datos()
             usuario_nuevo = Usuario(id_usuario, username, password, email)
             agregar_usuario(usuario_nuevo)
@@ -55,6 +59,8 @@ def ingreso():
         case 3:
             system("cls")
             print("Modificar un Usuario")
+            print("---------------------------")
+            print("")
             id_usuario = int(input("Ingrese el DNI del Usuario que desea modificar: "))
             actualizar_usuario(id_usuario)
             sleep(1)
@@ -63,6 +69,8 @@ def ingreso():
         case 4:
             system("cls")
             print("Eliminar un Usuario")
+            print("---------------------------")
+            print("")
             id_usuario = int(input("Ingrese el ID del Usuario que desea eliminar: "))
             eliminar_usuario(id_usuario)
             sleep(1)
@@ -71,10 +79,28 @@ def ingreso():
         case 5:
             system("cls")
             print("Mostrar todos los usuarios")
+            print("---------------------------")
+            print("")
             mostrar_usuarios()
             input("Presione ENTER para continuar ")
             ingreso()
-            
+        case 6:
+            system("cls")
+            print("Mostrar todos los Intentos de acceso")
+            print("---------------------------")
+            print("")
+            mostrar_intentos_fallidos()
+            input("Presione ENTER para continuar ")
+            ingreso()
+        case 7:
+            system("cls")
+            print("Mostrar Registro de accesos")
+            print("---------------------------")
+            print("")
+            mostrar_accesos()
+            input("Presione ENTER para continuar ")
+            ingreso()
+
         case 0:
             exit
         case _:
@@ -117,6 +143,7 @@ def menu_principal(profe):
         case 0:
             cierre(profe)
             sleep(1)
+            registrar_egreso(profe)
             ingreso()
         case _:
             print("Opcion Incorrecta")

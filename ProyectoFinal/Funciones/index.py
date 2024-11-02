@@ -19,4 +19,4 @@ bienvenida_prof(prof)                   #Llamamos a la funcion importada saludo_
 ingreso()
 #menu_principal()                        #Ejecutamos el menu principal
 system("cls")
-#cierre(prof)                            #Llamamos a la funcion saludo_prof pero para dar una despedida
+cierre()                            #Llamamos a la funcion saludo_prof pero para dar una despedida

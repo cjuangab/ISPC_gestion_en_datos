@@ -5,11 +5,11 @@ from time import sleep              #Importamos del modulo time la funcion sleep
 from Modificar import modificacion
 from users import *                 #Importamos del modulo users sus clases y sus funciones
 from Login import *
-
-
+from Bienvenida import *
 
 
 def ingreso():
+    system("cls")
     op_menu=99
     print("-----------------------------------")
     print('            IPET N° 251            ')
@@ -19,6 +19,8 @@ def ingreso():
     print('3. Modificar Usuario.')
     print('4. Eliminar Usuario.')
     print('5. Mostrar listado de usuarios.')
+    print('6. Mostrar intentos fallidos.')
+    print('7. Mostrar Registro de accesos.')
     print('0. Salir')
     try:
         op_menu = int(input("Por favor, Ingrese el número de la opción deseada: "))
@@ -32,16 +34,21 @@ def ingreso():
 
     match op_menu:
         case 1:
-            if login():
-                menu_principal()
-            else:
+            try:
+                estado,nombre=login()
+                if estado:
+                    menu_principal(nombre)
+            except Exception:
                 system("cls")
                 print("Usuario o contraseña incorrecta")
                 sleep(1)
                 ingreso()
+            
         case 2:
             system("cls")
             print("Crear un nuevo Usuario")
+            print("---------------------------")
+            print("")
             id_usuario, username, password, email = solicitar_datos()
             usuario_nuevo = Usuario(id_usuario, username, password, email)
             agregar_usuario(usuario_nuevo)
@@ -52,6 +59,8 @@ def ingreso():
         case 3:
             system("cls")
             print("Modificar un Usuario")
+            print("---------------------------")
+            print("")
             id_usuario = int(input("Ingrese el DNI del Usuario que desea modificar: "))
             actualizar_usuario(id_usuario)
             sleep(1)
@@ -60,6 +69,8 @@ def ingreso():
         case 4:
             system("cls")
             print("Eliminar un Usuario")
+            print("---------------------------")
+            print("")
             id_usuario = int(input("Ingrese el ID del Usuario que desea eliminar: "))
             eliminar_usuario(id_usuario)
             sleep(1)
@@ -68,10 +79,28 @@ def ingreso():
         case 5:
             system("cls")
             print("Mostrar todos los usuarios")
+            print("---------------------------")
+            print("")
             mostrar_usuarios()
-            sleep(3)
+            input("Presione ENTER para continuar ")
             ingreso()
-            
+        case 6:
+            system("cls")
+            print("Mostrar todos los Intentos de acceso")
+            print("---------------------------")
+            print("")
+            mostrar_intentos_fallidos()
+            input("Presione ENTER para continuar ")
+            ingreso()
+        case 7:
+            system("cls")
+            print("Mostrar Registro de accesos")
+            print("---------------------------")
+            print("")
+            mostrar_accesos()
+            input("Presione ENTER para continuar ")
+            ingreso()
+
         case 0:
             exit
         case _:
@@ -81,8 +110,12 @@ def ingreso():
             ingreso()
 
 
-def menu_principal():
+def menu_principal(profe):
+    system("cls")
     op_menu=99
+    bienvenida_prof(profe)
+    sleep(1)
+    system("cls")
     print("-----------------------------------")
     print('          Menú Principal          ')
     print("-----------------------------------")
@@ -108,7 +141,10 @@ def menu_principal():
         case 3:
             modificacion()
         case 0:
-            exit
+            cierre(profe)
+            sleep(1)
+            registrar_egreso(profe)
+            ingreso()
         case _:
             print("Opcion Incorrecta")
             sleep(1)
