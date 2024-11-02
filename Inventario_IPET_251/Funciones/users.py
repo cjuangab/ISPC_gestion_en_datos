@@ -132,7 +132,7 @@ def buscar_usuario(id_usuario, archivo='usuarios.ispc'):
 def eliminar_usuario(id, archivo='usuarios.ispc'):     #Definimos una funcion para Eliminar "usuarios" de un archivo binario, por defecto usuarios.ispc
     usuarios_lista = leer_usuarios(archivo)
     
-    usuarios_filtrados = [usuario for usuario in usuarios_lista if usuario.get_id() != id]
+    usuarios_filtrados = [usuario for usuario in usuarios_lista if usuario.getId() != id]
 
     # Guardar los cambios en el archivo binario
     with open(archivo, 'wb') as archivo:

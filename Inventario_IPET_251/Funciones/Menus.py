@@ -5,11 +5,11 @@ from time import sleep              #Importamos del modulo time la funcion sleep
 from Modificar import modificacion
 from users import *                 #Importamos del modulo users sus clases y sus funciones
 from Login import *
-
-
+from Bienvenida import *
 
 
 def ingreso():
+    system("cls")
     op_menu=99
     print("-----------------------------------")
     print('            IPET N° 251            ')
@@ -32,13 +32,16 @@ def ingreso():
 
     match op_menu:
         case 1:
-            if login():
-                menu_principal()
-            else:
+            try:
+                estado,nombre=login()
+                if estado:
+                    menu_principal(nombre)
+            except Exception:
                 system("cls")
                 print("Usuario o contraseña incorrecta")
                 sleep(1)
                 ingreso()
+            
         case 2:
             system("cls")
             print("Crear un nuevo Usuario")
@@ -69,7 +72,7 @@ def ingreso():
             system("cls")
             print("Mostrar todos los usuarios")
             mostrar_usuarios()
-            sleep(3)
+            input("Presione ENTER para continuar ")
             ingreso()
             
         case 0:
@@ -81,8 +84,12 @@ def ingreso():
             ingreso()
 
 
-def menu_principal():
+def menu_principal(profe):
+    system("cls")
     op_menu=99
+    bienvenida_prof(profe)
+    sleep(1)
+    system("cls")
     print("-----------------------------------")
     print('          Menú Principal          ')
     print("-----------------------------------")
@@ -108,7 +115,9 @@ def menu_principal():
         case 3:
             modificacion()
         case 0:
-            exit
+            cierre(profe)
+            sleep(1)
+            ingreso()
         case _:
             print("Opcion Incorrecta")
             sleep(1)

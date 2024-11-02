@@ -29,7 +29,7 @@ def login():
             bienvenida_prof(username)
             sleep(1)
             system("cls")
-            return True
+            return True,username
 
     print("Credenciales incorrectas. Acceso denegado.")
     return False
